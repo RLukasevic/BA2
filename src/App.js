@@ -1,26 +1,55 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import axios from 'axios-jsonp-pro';
+
+class App extends Component {
+  state = { 
+    feedbacks: [],
+    form: {
+      name: '',
+      email: '',
+      comment: '',
+      data: '',
+    },
+   }
+
+ 
+
+  componentDidMount() {
+
+    axios.get('http://localhost:3212/feedbacks')
+  .then(res => {
+    console.log(res);
+  })
+  .catch(e => {
+    console.log(e);
+  });
+ 
+
+  }
+
+  // handleSubmit = event => {
+  //   event.preventDefault();
+
+  //   const user = {
+  //     name: this.state.name
+  //   };
+
+  //   axios.post(`http://localhost:3212/feedbacks`, { user })
+  //     .then(res => {
+  //       console.log(res);
+  //       console.log(res.data);
+  //     })
+  // }
+
+  render() { 
+
+
+
+    return ( 
+      <div>Poggers</div>
+     );
+  }
 }
-
+ 
 export default App;
