@@ -15,7 +15,7 @@ class App extends Component {
   componentDidMount() {
     axios.get('http://localhost:3212/feedbacks')
     .then(res => {
-      console.log(res);
+      // console.log(res);
       const fbArr = [];
       for (let key in res.data.body) {
         fbArr.push({id:key, name: res.data.body[key].name, email: res.data.body[key].email, comment: res.data.body[key].comment});
@@ -35,8 +35,8 @@ class App extends Component {
     axios.post(`http://localhost:3212/feedbacks`, this.state.form)
       .then(res => {
         this.setState({ form: {name: '',email: '',comment: ''} });
-        console.log(res);
-        console.log(res.data);
+        // console.log(res);
+        // console.log(res.data);
       })
   }
 
@@ -58,13 +58,27 @@ class App extends Component {
 
     let form = (                
       <form className={styles.Form} onSubmit={this.handleSubmit}>
-          {formElementsArray.map(formElement => (
+          {formElementsArray.map(formElement => { 
+            if(formElement.id === 'comment') {
+              return (
+                <textarea 
+              className={styles.Comment}
+              rows='6'
+              key={formElement.id}
+              placeholder={formElement.id}
+              value={formElement.value} 
+              onChange={(event) => this.onChangeHandler(event,formElement.id)} />
+              );
+            }
+
+            return (
               <input 
               key={formElement.id}
               placeholder={formElement.id}
               value={formElement.value} 
               onChange={(event) => this.onChangeHandler(event,formElement.id)} />
-          ))}
+          );
+          })}
           <button className={styles.Button} type="submit">Submit</button>
       </form>
   );

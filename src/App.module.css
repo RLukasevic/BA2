@@ -13,9 +13,17 @@
 }
 
 .Form input {
+  height: 10px;
   font-size: 15px;
   padding: 5px;
   margin: 20px;
+}
+
+.Comment {
+  font-size: 15px;
+  padding: 5px;
+  margin: 20px;
+  
 }
 
 
